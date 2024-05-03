@@ -1,12 +1,20 @@
 'use client';
 
-import { useFormState } from 'react-dom';
+import { useFormState, useFormStatus } from 'react-dom';
 
 import { generateBase64 } from '@/app/actions';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
+function ButtonSubmit() {
+  const { pending } = useFormStatus();
+  return (
+    <Button type="submit" disabled={pending}>
+      Generate
+    </Button>
+  );
+}
 export const GenerateBase64 = () => {
   const [formState, formAction] = useFormState(generateBase64, undefined);
 
@@ -20,7 +28,7 @@ export const GenerateBase64 = () => {
           placeholder="Masukan link gdrive"
           className="flex-1"
         />
-        <Button type="submit">Generate</Button>
+        <ButtonSubmit />
       </form>
       {formState?.success ? (
         <div className="w-1/2 flex flex-row items-center space-x-3 pt-7">
