@@ -20,7 +20,7 @@ export async function generateBase64(
     const url = formData.get('url') as string;
 
     const fileIdRegex = /\/file\/d\//;
-    const viewRegex = /\/view\?usp=sharing/;
+    const viewRegex = /\/view\?usp=drive_link/;
 
     const newUrl = url.replace(fileIdRegex, '/uc?export=view&id=');
 
